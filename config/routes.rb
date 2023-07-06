@@ -16,14 +16,9 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
  root to: 'homes#top'
  get '/about', to: 'homes#about'
  
- resources :lists, only: %i[new create index destroy] do
+ resources :lists, only: %i[new create index destroy show edit update] do
   resources :post_comments, only: [:create, :destroy]
   resource :favorites, only: [:create, :destroy]
-  collection do
-   get 'show'
-   get 'list/edit', to: 'lists#edit', as: 'edit_current_user'
-   patch 'update', to: 'lists#update', as: 'update_current_user'
-  end
  end
  
  resources :users, only: [:index] do

@@ -1,2 +1,18 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div>
+  <h3><%= user.name %></h3>
+  <%= image_tag user.get_profile_image(100,100) %>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @lists.each do |list| %>
+<div>
+  <!--%= link_to lists_path(list.id) do %>
+    <!--%= image_tag list.get_image %>
+  <!--% end %-->
+  <p>画像：<%= image_tag list.user.get_profile_image(100,100) %></p>
+  <p>ニックネーム：<%= list.name %></p>
+  <p>説明：<%= list.introduction %></p>
+  <p>生息地：<%= list.habitat %></p>
+</div>
+<% end %>

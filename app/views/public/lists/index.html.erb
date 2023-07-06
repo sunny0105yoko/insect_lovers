@@ -1,2 +1,11 @@
-<h1>Public::Lists#index</h1>
-<p>Find me in app/views/public/lists/index.html.erb</p>
+<% @lists.each do |list| %>
+  <div>
+    <%= link_to list_path(list.id) do %>
+      <%= image_tag list.get_image, size:"180x140" %>
+    <% end %>
+    <p>タイトル：<%= list.name %></p>
+    <p>説明：<%= list.introduction %></p>
+    <p>生息地：<%= list.habitat %></p>
+    <p>ニックネーム：<%= list.user.name %></p>
+  </div>
+<% end %>
