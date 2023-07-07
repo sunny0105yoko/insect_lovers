@@ -1,18 +1,11 @@
 <div>
-  <h3><%= user.name %></h3>
-  <%= image_tag user.get_profile_image(100,100) %>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(50,50) %>
+  <% if @user == current_user %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+  <% end %>
 </div>
 
 <!-- ユーザーの投稿一覧 -->
 
-<% @lists.each do |list| %>
-<div>
-  <!--%= link_to lists_path(list.id) do %>
-    <!--%= image_tag list.get_image %>
-  <!--% end %-->
-  <p>画像：<%= image_tag list.user.get_profile_image(100,100) %></p>
-  <p>ニックネーム：<%= list.name %></p>
-  <p>説明：<%= list.introduction %></p>
-  <p>生息地：<%= list.habitat %></p>
-</div>
-<% end %>
+<%= render 'lists/list', lists: @lists %>

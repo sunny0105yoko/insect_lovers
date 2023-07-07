@@ -7,5 +7,6 @@
     <p>説明：<%= list.introduction %></p>
     <p>生息地：<%= list.habitat %></p>
     <p>ニックネーム：<%= list.user.name %></p>
+    <p><%= link_to "#{list.post_comments.count} コメント", list_path(list.id) %></p>
   </div>
 <% end %>

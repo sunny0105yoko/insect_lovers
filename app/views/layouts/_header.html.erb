@@ -4,7 +4,7 @@
         <%= link_to '投稿フォーム', new_list_path %>
       </li>
       <li>
-        <%= link_to 'マイページ', users_path(current_user.id) %>
+        <%= link_to 'マイページ', user_path(current_user.id) %>
       </li>
       <li>
         <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>

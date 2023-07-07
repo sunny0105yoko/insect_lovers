@@ -21,19 +21,13 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
   resource :favorites, only: [:create, :destroy]
  end
  
- resources :users, only: [:index] do
-  collection do
-  get 'show', to: 'users#show', as: 'current_user'
-  get 'information/edit', to: 'users#edit', as: 'edit_current_user'
-  patch 'update', to: 'users#update', as: 'update_current_user'
-  end
-end
-end
+ resources :users, only: %i[index show edit update]
 
 
 namespace :admin do
   root to: 'homes#top'
   resources :lists, only: %i[index show edit update destroy]
   resources :users, only: %i[index show]
+end
 end
 end
