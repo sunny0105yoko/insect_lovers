@@ -1,2 +1,15 @@
-<h1>Admin::Lists#index</h1>
-<p>Find me in app/views/admin/lists/index.html.erb</p>
+<% @lists.each do |list| %>
+  <div>
+    <%= link_to admin_list_path(list.id) do %>
+      <%= image_tag list.get_image, size:"90x70" %>
+    <% end %>
+    <p>タイトル：<%= list.name %></p>
+    <p>説明：<%= list.introduction %></p>
+    <p>生息地：<%= list.habitat %></p>
+    <p>ニックネーム：<%= list.user.name %></p>
+    <p><%= link_to "#{list.post_comments.count} コメント", admin_list_path(list.id) %></p>
+    <p>更新日: <%= list.updated_at %> </p>
+  </div>
+<% end %>
+
+<%= render 'shares/lists/list', lists: @lists %>

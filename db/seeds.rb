@@ -16,13 +16,11 @@ User.create!(
       name: 'Test1',
       email: 'Test1@gmail.com',
       password: '111111',
-      is_deleted: false
     },
     {
       name: 'Test2',
       email: 'Test2@gmail.com',
       password: '111111',
-      is_deleted: false
     }
   ]
 )

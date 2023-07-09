@@ -8,6 +8,11 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @lists = @user.lists.all
   end
+  
+  def favorites
+    redirect_to root_path unless current_user.id
+    @favorites = Favorite.where(user_id: @user.id).all
+  end
 
   def edit
     @user = User.find(params[:id])
