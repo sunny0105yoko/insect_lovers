@@ -1,5 +1,12 @@
 class Public::ListsController < ApplicationController
-
+  before_action :ensure_current_user, {only: [:edit, :update]}
+  def ensure_current_user
+    @list = List.find(params[:id])
+    if current_user.id != @list.user_id
+      redirect_to lists_path
+    end
+  end
+    
   def new
     @list = List.new
   end

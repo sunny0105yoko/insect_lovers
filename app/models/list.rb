@@ -13,7 +13,22 @@ class List < ApplicationRecord
  end
  
  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    favorites.where(user_id: user.id).exists?
  end
+ 
+ # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @list = List.where("name LIKE?","#{word}")
+    elsif search == "forward_match"
+      @list = List.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @list = List.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @list = List.where("name LIKE?","%#{word}%")
+    else
+      @list = List.all
+    end
+  end
   
 end
