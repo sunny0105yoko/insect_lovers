@@ -12,6 +12,11 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
   
+  # DM画面で使う
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

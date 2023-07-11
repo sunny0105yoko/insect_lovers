@@ -1,13 +1,11 @@
-          <% if list.favorited_by?(current_user) %>
-              <p>
-              <%= link_to list_favorites_path(list), method: :delete, remote: true do %>
-                ♥<%= list.favorites.count %> 
-              <% end %>
-              </p>
-            <% else %>
-              <p>
-              <%= link_to list_favorites_path(list), method: :post, remote: true do %>
-                ♡<%= list.favorites.count %> 
-              <% end %>
-              </p>
-          <% end %>
+<% if list.favorited_by?(current_user) %>
+  <%= link_to list_favorites_path(list), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= list.favorites.count %> いいね
+  <% end %>
+<% else %>
+  <%= link_to list_favorites_path(list), method: :post, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+    <%= list.favorites.count %> いいね
+  <% end %>
+<% end %>

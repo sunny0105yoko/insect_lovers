@@ -1,3 +1,5 @@
+<%= render 'shares/lists/list', lists: @lists %>
+
 <% @lists.each do |list| %>
   <div>
     <%= link_to list_path(list.id) do %>

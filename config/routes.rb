@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
     
     get 'searches/search' => "searches#search"
+    resources :chats, only: [:show, :create]
   end
 
   namespace :admin do

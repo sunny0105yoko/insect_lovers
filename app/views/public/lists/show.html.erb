@@ -5,40 +5,24 @@
     <p>生息地：<%= @list.habitat %></p>
     <p>ニックネーム：<%= @list.user.name %></p>
     <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
-    <% if @list.user == current_user %>
-    <%= link_to "削除", list_path(@list.id), method: :delete %>
-    <%= link_to "編集", edit_list_path(@list.id) %>
-    <% end %>
-    <% if @list.favorited_by?(current_user) %>
-    <p>
-      <%= link_to list_favorites_path(@list), method: :delete do %>
-      ♥<%= @list.favorites.count %> いいね
+      <% if @list.user == current_user %>
+        <td><%= link_to 'Edit', edit_list_path(@list), class: "btn btn-sm btn-success edit_list_#{@list.id}" %></td>
+        <td><%= link_to 'Destroy', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
       <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to list_favorites_path(@list), method: :post do %>
-      ♡<%= @list.favorites.count %> いいね
-    <% end %>
-    </p>
-    <% end %>
 </div>
 
 <div>
-  <p>コメント件数：<%= @list.post_comments.count %></p>
-  <% @list.post_comments.each do |post_comment| %>
-    <p><!--%= image_tag post_comment.user.get_profile_image(50,50) %--></p>
-    <%= link_to post_comment.user.name, user_path(post_comment.user.id) %>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", list_post_comment_path(post_comment.list, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
+  <p id="favorite-<%= @list.id %>">
+    <!--<p class=<%#= "favorite-" + @list.id.to_s %>>-->
+    <%= render "public/favorites/favorites", list: @list %>
+  </p>
+  <p class="post-comments-counter">
+    <%= render "public/post_comments/counter", list: @list %>
+  </p>
 </div>
-<div>
-  <%= form_with model: [@list, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+<div class="post-comments-index">
+   <%= render "public/post_comments/index", list: @list %>
+</div>
+<div>    
+    <%= render "public/post_comments/form", list: @list, post_comment: @post_comment %>
 </div>
