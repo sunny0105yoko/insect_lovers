@@ -37,7 +37,7 @@ class User < ApplicationRecord
   def following?(user)
   followings.include?(user)
   end
-  
+  #検索機能
   def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
@@ -51,6 +51,16 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+  #ゲストログイン
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+
   
 
   # Include default devise modules. Others available are:
