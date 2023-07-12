@@ -1,0 +1,7 @@
+<h4>お気に入りの投稿</h4>
+<% if @favorite_list.present? %>
+        <% @favorite_list.each do |list| %>
+        <%= list.name %>
+        <%= image_tag list.image%>
+        <% end %>
+      <% end %>
