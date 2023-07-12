@@ -1,2 +1,11 @@
-<h1>Public::Lists#edit</h1>
-<p>Find me in app/views/public/lists/edit.html.erb</p>
+<%= form_with model: @list do |f| %>
+<h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h4>タイトル</h4>
+  <%= f.text_field :name %>
+  <h4>説明</h4>
+  <%= f.text_area :introduction %>
+  <h4>生息地</h4>
+  <%= f.text_field :habitat %>
+  <%= f.submit '更新' %>
+<% end %>

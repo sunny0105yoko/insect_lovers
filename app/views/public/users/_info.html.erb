@@ -1,0 +1,31 @@
+<table class='table'>
+  <tr><%= image_tag @user.get_profile_image(500,500) %></tr>
+  <tr>
+	  <th>ニックネーム</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <th>follows: 
+    <%= link_to user.followings.count, user_followings_path(user.id) %>
+    </th>
+  </tr>
+  <tr>
+    <th>followers: 
+    <%= link_to user.followers.count, user_followers_path(user.id) %>
+    </th>
+  </tr>
+  </table>
+  <div class='row'>
+    <% if current_user.email != "guest@example.com" && current_user = user %>
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    <% else %>
+      <td><%= render "public/relationships/btn", user: user %></td>
+    <% end %>
+
+    
+    <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+      <%= link_to 'chatを始める', chat_path(user.id), class: "ml-3" %>
+    <% end %>
+  </div>

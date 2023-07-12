@@ -1,0 +1,12 @@
+.heading-image {
+    width: 500px;
+    height: 320px;
+    background-image: url('top_image.jpg');
+    background-size: cover;
+}
+
+.heading-text {
+    top: 120px;
+    left: 130px;
+    font-size: 20px;
+}
