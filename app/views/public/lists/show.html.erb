@@ -11,10 +11,8 @@
       <% end %>
     <!--Googlemaps-->
     <h3>観察場所</h3>
-　    <div class="map">
-        <div id="map">
-        </div>
-      </div>
+    <div id="map" style="width:500px; height:500px;">
+    </div>
 
     <div type="text/javascript">
       <script>
@@ -40,6 +38,6 @@
 <div id="post-comments-index">
    <%= render "public/post_comments/index", {list: @list, post_comment: @post_comment } %></br>
 </div>
-<div id="post-comments-form">    
+<div id="post-comments-form">
     <%= render "public/post_comments/form", {list: @list, post_comment: @post_comment } %>
 </div>

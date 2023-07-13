@@ -60,3 +60,5 @@ gem 'bootstrap','~> 4.6.2'
 gem 'jquery-rails'
 gem 'gmaps4rails'
 gem 'geocoder'
+
+gem 'dotenv-rails'

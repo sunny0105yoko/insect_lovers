@@ -5,6 +5,7 @@ class List < ApplicationRecord
  has_many :favorites, dependent: :destroy
  geocoded_by :habitat
  after_validation :geocode
+
  
  def get_image
    unless image.attached?
