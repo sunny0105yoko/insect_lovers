@@ -1,2 +1,9 @@
-<h1>Admin::Lists#show</h1>
-<p>Find me in app/views/admin/lists/show.html.erb</p>
+<div>
+  <%= image_tag @list.get_image %>
+    <p>タイトル：<%= @list.name %></p>
+    <p>説明：<%= @list.introduction %></p>
+    <p>生息地：<%= @list.habitat %></p>
+    <p>ニックネーム：<%= @list.user.name %></p>
+    <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
+        <td><%= link_to 'Destroy', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
+</div>
