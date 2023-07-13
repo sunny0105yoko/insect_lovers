@@ -8,6 +8,13 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+        <p class="text-left mt-3" style="color: #ebea90; margin-left: 10%; font-size: 14px;">
+
+              ようこそ、
+              <% if current_user %>
+                <%= current_user.name %>さん！
+              <% end %>
+            </p>
           <li>
             <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i> Home
@@ -29,6 +36,25 @@
             <% end %>
           </li>
           
+        <% elsif admin_signed_in? %>
+          <p class="text-left mt-3" style="color: #ebea90; margin-left: 10%; font-size: 14px;">
+              ようこそ、管理人さん！
+          </p>
+          <li>
+            <%=  link_to admin_users_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-users"></i> Users
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to admin_lists_path ,class: 'nav-link text-light' do %>
+              <i class="fas fa-book-open"></i> lists
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
+              <i class="fas fa-sign-out-alt"></i> Log out
+            <% end %>
+          </li>
         <% else %>
           <li>
             <%= link_to root_path,class: 'nav-link text-light' do %>

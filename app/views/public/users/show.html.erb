@@ -5,8 +5,8 @@
       <%= render 'info', user: @user %>
       <p><%= link_to"お気に入り記事",favorites_user_path(@user) %></p>
       
-      
-      
+<!-- ユーザーの新規投稿 -->     
+      <%= render '/public/lists/new', lists: @list %>
 
 <!-- ユーザーの投稿一覧 -->
 
