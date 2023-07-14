@@ -15,6 +15,7 @@
     </div>
 
     <div type="text/javascript">
+      <!--地図表示-->
       <script>
         function initMap(){
           let map = new google.maps.Map(document.getElementById('map'), {
@@ -22,6 +23,14 @@
           zoom: 15
           });
         }
+      </script>
+      <script>
+      //マーカーを立てる
+        var marker = new google.maps.Marker({
+          position:{lat: <%= @list.latitude %>, lng: <%= @list.longitude %>},
+          map: map,
+          title: contentString
+        });
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
     </div>
