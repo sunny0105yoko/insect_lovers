@@ -11,6 +11,7 @@ class Public::UsersController < ApplicationController
     @lists = @user.lists.all
     favorites = Favorite.where(user_id: current_user.id).pluck(:list_id)
     @favorite_list = List.find(favorites)
+    @list = List.new
   end
 
   def favorites

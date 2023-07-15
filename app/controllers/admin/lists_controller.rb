@@ -4,9 +4,18 @@ class Admin::ListsController < ApplicationController
   end
 
   def show
+    @list = List.find(params[:id])
   end
 
   def edit
+    @list = List.find(params[:id])
+  end
+  
+  def destroy
+    list = List.find(params[:id])
+    if list.destroy
+    redirect_to 'admin/lists', notice: "削除されました"
+    end
   end
   
   private
