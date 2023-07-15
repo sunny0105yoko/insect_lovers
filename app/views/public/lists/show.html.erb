@@ -9,7 +9,31 @@
         <td><%= link_to 'Edit', edit_list_path(@list), class: "btn btn-sm btn-success edit_list_#{@list.id}" %></td>
         <td><%= link_to 'Destroy', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
       <% end %>
-</div>
+    <!--Googlemaps-->
+    <h3>観察場所</h3>
+    <div id="map" style="width:500px; height:500px;">
+    </div>
+
+    <div type="text/javascript">
+      <!--地図表示-->
+      <script>
+        function initMap(){
+          let map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: <%= @list.latitude %>, lng: <%= @list.longitude %> },
+          zoom: 15
+          });
+        }
+      </script>
+      <script>
+      //マーカーを立てる
+        var marker = new google.maps.Marker({
+          position:{lat: <%= @list.latitude %>, lng: <%= @list.longitude %>},
+          map: map,
+          title: contentString
+        });
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
 
 <div>
   <p id="favorite-<%= @list.id %>">
@@ -23,6 +47,6 @@
 <div id="post-comments-index">
    <%= render "public/post_comments/index", {list: @list, post_comment: @post_comment } %></br>
 </div>
-<div id="post-comments-form">    
+<div id="post-comments-form">
     <%= render "public/post_comments/form", {list: @list, post_comment: @post_comment } %>
 </div>
