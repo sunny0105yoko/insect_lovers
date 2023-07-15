@@ -22,15 +22,13 @@
           center: {lat: <%= @list.latitude %>, lng: <%= @list.longitude %> },
           zoom: 15
           });
+          var marker = new google.maps.Marker({
+          //マーカーを立てる
+            position:{lat: <%= @list.latitude %>, lng: <%= @list.longitude %>},
+            map: map,
+            title: "<%= @list.habitat %>"
+          });
         }
-      </script>
-      <script>
-      //マーカーを立てる
-        var marker = new google.maps.Marker({
-          position:{lat: <%= @list.latitude %>, lng: <%= @list.longitude %>},
-          map: map,
-          title: contentString
-        });
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
     </div>
