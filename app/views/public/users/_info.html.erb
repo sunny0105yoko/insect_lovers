@@ -15,7 +15,7 @@
     </th>
   </tr>
   </table>
-  <div class='row'
+  <div class='row'>
     <% if current_user.email != "guest@example.com" && current_user == user %>
       <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
         <i class="fas fa-user-cog"></i>
