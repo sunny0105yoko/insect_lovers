@@ -1,7 +1,7 @@
 .heading-image {
     width: 1000px;
     height: 640px;
-    background-image: url('top_image.jpg');
+    background-image: image-url('top_image.jpg');
     background-size: cover;
     margin-bottom: 10px;
 }
@@ -16,7 +16,7 @@
 .about-image {
     width: 500px;
     height: 320px;
-    background-image: url('about_image.jpg');
+    background-image: image-url('about_image.jpg');
     background-size: cover;
 }
 
