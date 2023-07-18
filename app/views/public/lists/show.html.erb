@@ -1,10 +1,16 @@
-<div>
-  <%= image_tag @list.get_image %>
-    <p>タイトル：<%= @list.name %></p>
-    <p>説明：<%= @list.introduction %></p>
-    <p>生息地：<%= @list.habitat %></p>
-    <p>ニックネーム：<%= @list.user.name %></p>
-    <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>投稿詳細：<%= @list.name %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 mt-5">
+      <%= image_tag @list.get_image,size: "600x400" %>
+      <p>投稿者：<%= @list.user.name %></p>
+      <p>説明：<%= @list.introduction %></p>
+      <p>生息地：<%= @list.habitat %></p>
+      <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
       <% if @list.user == current_user %>
         <td><%= link_to 'Edit', edit_list_path(@list), class: "btn btn-sm btn-success edit_list_#{@list.id}" %></td>
         <td><%= link_to 'Destroy', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
@@ -33,18 +39,21 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
     </div>
 
-<div>
-  <p id="favorite-<%= @list.id %>">
+      <div>
+       <p id="favorite-<%= @list.id %>">
     <!--<p class=<%#= "favorite-" + @list.id.to_s %>>-->
-    <%= render "public/favorites/favorites", list: @list %>
-  </p>
-  <p class="post-comments-counter">
-    <%= render "public/post_comments/counter", list: @list %>
-  </p>
-</div>
-<div id="post-comments-index">
-   <%= render "public/post_comments/index", {list: @list, post_comment: @post_comment } %></br>
-</div>
-<div id="post-comments-form">
-    <%= render "public/post_comments/form", {list: @list, post_comment: @post_comment } %>
+        <%= render "public/favorites/favorites", list: @list %>
+        </p>
+        <p class="post-comments-counter">
+        <%= render "public/post_comments/counter", list: @list %>
+        </p>
+      </div>
+      <div id="post-comments-index">
+        <%= render "public/post_comments/index", {list: @list, post_comment: @post_comment } %></br>
+      </div>
+      <div id="post-comments-form">
+        <%= render "public/post_comments/form", {list: @list, post_comment: @post_comment } %>
+      </div>
+    </div>
+  </div>
 </div>

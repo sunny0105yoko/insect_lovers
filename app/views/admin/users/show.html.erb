@@ -1,2 +1,23 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>ユーザー情報</h2>
+      <table class='table'>
+        <tr><%= image_tag @user.get_profile_image(500,500) %></tr>
+        <tr>
+	      <th>ニックネーム</th>
+	      <th><%= @user.name %></th>
+        </tr>
+        <tr>
+	      <th>メールアドレス</th>
+	      <th><%= @user.email %></th>
+        </tr>
+      </table>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <%= render '/admin/lists/lists', lists: @lists %>
+    </div>
+  </div>
+</div>
+
+

@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @lists = @user.lists.all
+    @lists = @user.lists.page(params[:page]).per(6)
     favorites = Favorite.where(user_id: current_user.id).pluck(:list_id)
     @favorite_list = List.find(favorites)
     @list = List.new

@@ -11,23 +11,20 @@
       <div class='d-flex flex-wrap' style="width: 800px;">
         <% lists.each do |list| %>
           <div class="list-box m-2">
-            <%= link_to list_path(list.id) do %>
+            <%= link_to admin_list_path(list.id) do %>
               <%= image_tag list.get_image, size:"180x140", class:"card-img-top"; %>
               <% end %>
                 <div class="card-title">
-                  <%= link_to(list_path(list.id), class:"text-dark") do %>
+                  <%= link_to(admin_list_path(list.id), class:"text-dark") do %>
                     <strong><i class="far fa-flag"></i><span><%= list.name %></span></strong>
                   <% end %>
                 </div>
                 <div class="card-text">説明：<%= list.introduction %>
                       <p>生息地：<%= list.habitat %></p>
-                      <%= link_to list.user.name, user_path(list.user.id), class:"item-text" %><br>
+                      <%= link_to list.user.name, admin_user_path(list.user.id), class:"item-text" %><br>
                       <p>更新日: <%= list.updated_at %> </p>
                       <span><i class="fas fa-user"></i> By <%= list.user.name %> ｜ </span>
-                      <span><%= link_to "#{list.post_comments.count}  コメント", list_path(list.id), class:"text-dark" %></span>
-                      <p id="favorite-<%= list.id %>">
-                      <%= render "public/favorites/favorites", list: list %>
-                      </p>
+                      <span><%= link_to "#{list.post_comments.count}  コメント", admin_list_path(list.id), class:"text-dark" %></span>
                 </div>
           </div>
         <% end %>

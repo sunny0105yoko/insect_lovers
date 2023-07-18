@@ -19,7 +19,7 @@ class Public::ListsController < ApplicationController
   end
   
   def index
-    @lists = List.page(params[:page]).per(8)
+    @lists = List.page(params[:page]).per(6)
   end
 
   def show

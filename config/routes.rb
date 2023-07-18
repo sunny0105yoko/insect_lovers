@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root to: 'homes#top'
+    root to: 'lists#index'
     resources :lists, only: %i[index show edit update destroy]
     resources :users, only: %i[index show]
   end

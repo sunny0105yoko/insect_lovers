@@ -1,7 +1,32 @@
-<% @users.each do |user| %>
-  <div>
-  <p>ニックネーム：<%= user.name %></p>
-  <%= image_tag user.get_profile_image(50,50) %>
+<div class="container">
+  <div class="row">
+    <h2 class="mt-4">ユーザー一覧</h2>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 mx-auto">
+      <table class="table table-hover">
+        <thead class="table-green">
+          <tr>
+            <th>ユーザー</th>
+            <th>メールアドレス</th>
+          </tr>
+        </thead>
+        <% @users.each do |user| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to admin_user_path(user) do %>
+              <%= user.name %>
+              <%= image_tag user.get_profile_image(50,50) %>
+              <% end %>
+            </td>
+            <td><%= user.email %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <!--%= paginate @customers %-->
+    </div>
+  </div>
+</div>
 
