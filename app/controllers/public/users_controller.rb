@@ -17,17 +17,21 @@ class Public::UsersController < ApplicationController
   def favorites
     redirect_to root_path unless current_user.id
     favorites = Favorite.where(user_id: current_user.id).pluck(:list_id)
-    @favorite_list = List.find(favorites)
+    @favorite_list = Kaminari.paginate_array(List.find(favorites)).page(params[:page]).per(6)
   end
 
   def edit
     @user = User.find(params[:id])
-
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to lists_path
+    end
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:notice] = "変更内容が保存されました。"
     redirect_to user_path(@user.id)
     else
       render 'edit'
@@ -46,11 +50,11 @@ class Public::UsersController < ApplicationController
       redirect_to lists_path
     end
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end  
+  end
 end

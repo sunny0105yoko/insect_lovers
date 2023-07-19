@@ -15,6 +15,7 @@ class Public::ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user_id = current_user.id
     if@list.save
+      flash[:notice] = "投稿が成功しました"
     redirect_to lists_path
     else
     render :_new
@@ -39,7 +40,7 @@ class Public::ListsController < ApplicationController
     @list.update(list_params)
     if @list.save
       flash[:notice] = "変更内容が保存されました。"
-      redirect_to '/lists'
+      redirect_to list_path
     else
       @lists = List.all
       render :edit
