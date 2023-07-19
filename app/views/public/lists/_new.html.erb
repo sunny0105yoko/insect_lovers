@@ -1,3 +1,5 @@
+<%= render 'layouts/errors', obj: @list %>
+
 <%= form_with model: @list do |f| %>
   <h6>画像</h6>
   <%= f.file_field :image, accept: "image/*" %>

@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :chats
   has_many :rooms, through: :user_rooms
   
+  #バリデーション
+  #validates :name, presence: true
+  #validates :profile_image, presence: true
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

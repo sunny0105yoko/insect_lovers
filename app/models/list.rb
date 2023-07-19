@@ -5,6 +5,11 @@ class List < ApplicationRecord
  has_many :favorites, dependent: :destroy
  geocoded_by :habitat
  after_validation :geocode
+ 
+ validates :name, presence: true
+ validates :image, presence: true
+ validates :introduction, presence: true
+ validates :habitat, presence: true
 
  
  def get_image

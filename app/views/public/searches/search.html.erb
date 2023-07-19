@@ -1,5 +1,5 @@
 
-<h2>検索</h2>
+<h2>検索結果</h2>
 
 <table class="table table-hover table-inverse">
   <!--検索対象モデルがUserの時 -->
@@ -7,16 +7,30 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td><%= link_to user_path(user.id) do %>
+          <%= user.name %>
+          <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   <% else %>
     <!--検索対象モデルがUserではない時(= 検索対象モデルがlistの時) -->
     <tbody>
+      <div class='row-10 mt-3'>
+        <table class='table table-border table-sm'>
+          <tr class="table-green">
+            <th>タイトル</th>
+            <th>説明</th>
+            <th>生息地</th>
+        <th><br></th>
+      </tr>
       <% @lists.each do |list| %>
         <tr>
-          <td><%= list.name %></td>
+          <td><%= link_to list_path(list.id) do %>
+          <%= list.name %>
+          <% end %>
+          </td>
           <td><%= list.introduction %></td>
           <td><%= list.habitat %></td>
         </tr>

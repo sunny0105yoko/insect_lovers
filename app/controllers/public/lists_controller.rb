@@ -14,8 +14,11 @@ class Public::ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.user_id = current_user.id
-    @list.save
+    if@list.save
     redirect_to lists_path
+    else
+    render :_new
+    end
   end
   
   def index
@@ -55,5 +58,4 @@ private
   def list_params
     params.require(:list).permit(:name, :image, :introduction, :habitat, :latitude, :longitude)
   end
-  
 end
