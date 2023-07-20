@@ -20,6 +20,7 @@ class Public::ListsController < ApplicationController
     else
     render :_new
     end
+    #@user = User.find(params[:id])
   end
   
   def index
@@ -59,4 +60,12 @@ private
   def list_params
     params.require(:list).permit(:name, :image, :introduction, :habitat, :latitude, :longitude)
   end
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    @user.email == "guest@example.com"
+     # redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    #end
+  end
+  
 end
