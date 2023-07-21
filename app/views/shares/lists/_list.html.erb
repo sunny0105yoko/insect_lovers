@@ -22,7 +22,7 @@
                 <% end %></h5>
         <p class="card-text">説明：<%= list.introduction %></p>
         <p class="card-text">生息地：<%= list.habitat %></p>
-        <p class="card-text">更新日: <%= list.updated_at %> </p>
+        <p class="card-text">更新日: <%= list.updated_at.strftime('%Y/%m/%d') %> </p>
         <span><i class="fas fa-user"></i> By <%= link_to list.user.name, user_path(list.user.id), class:"item-text" %> ｜ </span>
         <span><%= link_to "#{list.post_comments.count}  コメント", list_path(list.id), class:"text-dark" %></span>
         <p id="favorite-<%= list.id %>">
