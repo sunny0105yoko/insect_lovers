@@ -5,7 +5,6 @@
 }
 
 .heading-image {
-
     width: 100%;
     height: 640px;
     background-image: url('../images/top_image.jpg');
@@ -21,7 +20,7 @@
 }
 
 .about-image {
-    width: 500px;
+    width: 400px;
     height: 320px;
     background-image: url('../images/about_image.jpg');
     background-size: cover;
@@ -49,5 +48,11 @@
   }
   nav.navbar .container {
     justify-content: center;
+  }
+  .main-text {
+    font-size: 1.1em;
+    line-height: 1.5;
+    text-align: center;
+    padding: 20px;
   }
 }
