@@ -5,7 +5,8 @@
 }
 
 .heading-image {
-    width: 1000px;
+
+    width: 100%;
     height: 640px;
     background-image: url('../images/top_image.jpg');
     background-size: cover;
@@ -29,4 +30,24 @@
 .color-olive,
 .footer-nav {
     color: #D7D56F;
+}
+
+.main-title {
+  color: white;
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+@media screen and (max-width: 576px) {
+  .row.__nav {
+    flex-direction: column;
+  }
+  .nav-logo {
+    text-align: center;
+  }
+  .main-title {
+    text-align: center;
+  }
+  nav.navbar .container {
+    justify-content: center;
+  }
 }

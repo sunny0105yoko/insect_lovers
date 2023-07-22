@@ -1,14 +1,21 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+      <div class='row __nav w-100 align-items-center'>
       <a class="navbar-brand" href="/">
-        <%= image_tag "Logo_Insect_lovers.jpg", size: '80x80' %>
-        <span>あつまれ！昆虫愛好家の皆さん〜</span>
+        <div class="nav-logo">
+          <%= image_tag "Logo_Insect_lovers.jpg", size: '80x80' %>
+        </div>
       </a>
+      <p class="main-title mt-2">あつまれ！昆虫愛好家の皆さん〜</p>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-        <p class="text-left mt-3" style="color: #ebea90; margin-left: 10%; font-size: 14px;">
+            <p class="text-left mt-3" style="color: #ebea90; margin-left: 10%; font-size: 14px;">
 
               ようこそ、
               <% if current_user %>
@@ -35,7 +42,7 @@
               <i class="fas fa-sign-out-alt"></i> Log out
             <% end %>
           </li>
-          
+
         <% elsif admin_signed_in? %>
           <p class="text-left mt-3" style="color: #ebea90; margin-left: 10%; font-size: 14px;">
               ようこそ、管理人さん！
@@ -80,6 +87,7 @@
         </ul>
       </div>
     </div>
+   </div>
   </nav>
 </header>
 
