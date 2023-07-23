@@ -5,8 +5,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-5 mt-5">
-      <%= image_tag @list.get_image,size: "600x400" %>
+    <div class="col-12 mt-5">
+      <%= image_tag @list.get_image, class:'list_image' %>
       <p>投稿者：<%= @list.user.name %></p>
       <p>説明：<%= @list.introduction %></p>
       <p>生息地：<%= @list.habitat %></p>
@@ -18,7 +18,7 @@
       <% end %>
     <!--Googlemaps-->
     <h3>観察場所</h3>
-    <div id="map" style="width:500px; height:500px;">
+    <div id="map" style="width:400px; height:400px;">
     </div>
 
     <div type="text/javascript">
@@ -40,10 +40,9 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
     </div>
 
-      <div>
+      <div class="mt-3">
        <p id="favorite-<%= @list.id %>">
-
-        <%= render "public/favorites/favorites", list: @list %>
+　　　　<%= render "public/favorites/favorites", list: @list %>
         </p>
         <p class="post-comments-counter">
         <%= render "public/post_comments/counter", list: @list %>

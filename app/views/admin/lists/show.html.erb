@@ -5,18 +5,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-5 mt-5">
-      <%= image_tag @list.get_image,size: "600x400" %>
-      <p>タイトル：<%= @list.name %></p>
+    <div class="col-12 mt-5">
+      <%= image_tag @list.get_image, class:'list_image' %>
       <p>説明：<%= @list.introduction %></p>
       <p>生息地：<%= @list.habitat %></p>
-      <p>ニックネーム：<%= @list.user.name %></p>
+      <p>ユーザー：<%= @list.user.name %></p>
       <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
       <p>更新日：<%= @list.updated_at.strftime('%Y/%m/%d') %></p>
           <td><%= link_to 'Destroy', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
 <!--Googlemaps-->
     <h3>観察場所</h3>
-    <div id="map" style="width:500px; height:500px;">
+    <div id="map" style="width:400px; height:400px;">
     </div>
 
     <div type="text/javascript">

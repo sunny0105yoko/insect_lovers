@@ -14,7 +14,7 @@ class Admin::ListsController < ApplicationController
   def destroy
     list = List.find(params[:id])
     if list.destroy
-    redirect_to 'admin/lists', notice: "削除されました"
+    redirect_to admin_lists_path, notice: "削除されました"
     end
   end
   
