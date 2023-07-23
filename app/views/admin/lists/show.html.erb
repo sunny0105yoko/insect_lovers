@@ -1,13 +1,51 @@
 <div class="container">
   <div class="row">
-    <div>
-      <%= image_tag @list.get_image %>
-        <p>タイトル：<%= @list.name %></p>
-        <p>説明：<%= @list.introduction %></p>
-        <p>生息地：<%= @list.habitat %></p>
-        <p>ニックネーム：<%= @list.user.name %></p>
-        <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
+    <div class="col">
+      <h4>投稿詳細：<%= @list.name %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 mt-5">
+      <%= image_tag @list.get_image,size: "600x400" %>
+      <p>タイトル：<%= @list.name %></p>
+      <p>説明：<%= @list.introduction %></p>
+      <p>生息地：<%= @list.habitat %></p>
+      <p>ニックネーム：<%= @list.user.name %></p>
+      <p>投稿日：<%= @list.created_at.strftime('%Y/%m/%d') %></p>
+      <p>更新日：<%= @list.updated_at.strftime('%Y/%m/%d') %></p>
           <td><%= link_to 'Destroy', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
+<!--Googlemaps-->
+    <h3>観察場所</h3>
+    <div id="map" style="width:500px; height:500px;">
+    </div>
+
+    <div type="text/javascript">
+      <!--地図表示-->
+      <script>
+        function initMap(){
+          let map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: <%= @list.latitude %>, lng: <%= @list.longitude %> },
+          zoom: 15
+          });
+          var marker = new google.maps.Marker({
+          //マーカーを立てる
+            position:{lat: <%= @list.latitude %>, lng: <%= @list.longitude %>},
+            map: map,
+            title: "<%= @list.habitat %>"
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
+
+      <div>
+        <p class="post-comments-counter">
+        <%= render "public/post_comments/counter", list: @list %>
+        </p>
+      </div>
+      <div id="post-comments-index">
+        <%= render "public/post_comments/index", {list: @list, post_comment: @post_comment } %></br>
+      </div>
     </div>
   </div>
 </div>
