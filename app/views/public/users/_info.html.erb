@@ -1,16 +1,16 @@
 <table class='table'>
-  <tr><%= image_tag @user.get_profile_image(500,500) %></tr>
+  <tr><%= image_tag @user.get_profile_image, class:'profile_image', style: 'width: 100%; height: 250px; object-fit: cover;' %></tr>
   <tr>
 	  <th>ユーザー名</th>
 	  <th><%= user.name %></th>
   </tr>
   <tr>
-    <th>follows: 
+    <th>follows:
     <%= link_to user.followings.count, user_followings_path(user.id) %>
     </th>
   </tr>
   <tr>
-    <th>followers: 
+    <th>followers:
     <%= link_to user.followers.count, user_followers_path(user.id) %>
     </th>
   </tr>
