@@ -1,16 +1,16 @@
-<table>
-  <tbody class="comment-text" style="width: 100%; word-wrap: break-word;">
+<table class="w-100" style="word-wrap: break-word; table-layout: fixed;">
+  <tbody class="comment-text">
       <% list.post_comments.each do |post_comment| %>
       <tr>
-        
-        <td>
+
+        <td class="text-center" style="width: 20%">
           <%= link_to user_path(post_comment.user) do %>
             <%= image_tag post_comment.user.get_profile_image, class:'profile_image' %><br>
             <%= post_comment.user.name %>
           <% end %>
         </td>
-        <td class="comment-text"><%= simple_format(post_comment.comment) %></td>
-        <td>
+        <td class="comment-text" style="width: 70%"><%= simple_format(post_comment.comment) %></td>
+        <td class="text-center" style="width: 10%">
           <% if post_comment.user == current_user %>
             <%= link_to "Destroy", list_post_comment_path(list, post_comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
           <% end %>
