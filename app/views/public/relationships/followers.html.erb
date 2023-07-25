@@ -1,24 +1,28 @@
-<h2>フォローワー一覧</h2>
-<% if @users.exists? %>
-<table class='table'>
-  <thead>
-    <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |user| %>
-        <tr>
-          <td><%= image_tag user.get_profile_image, class:'profile_image' %></td>
-          <td><%= user.name %></td>
-          <td>follows: <%= user.followings.count %></td>
-          <td>followers: <%= user.followers.count %></td>
-          <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-        </tr>
-      </tbody>
-  <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class= "container">
+  <div class='row'>
+    <h2>フォローワー一覧</h2>
+      <% if @users.exists? %>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>ユーザー名</th>
+              <th colspan="3"></th>
+    　　    　</tr>
+          </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_profile_image, class:'profile_image' %></td>
+            <td><%= user.name %></td>
+            <td>follows: <%= user.followings.count %></td>
+            <td>followers: <%= user.followers.count %></td>
+            <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+        </table>
+  </div>
+</div>
