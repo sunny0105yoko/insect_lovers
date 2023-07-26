@@ -1,6 +1,6 @@
 <div class= "container">
   <div class='row'>
-    <h2>フォローワー一覧</h2>
+    <h4>フォローワー一覧：</h4>
       <% if @users.exists? %>
         <table class='table'>
           <thead>
@@ -10,19 +10,19 @@
     　　    　</tr>
           </thead>
         <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_profile_image, class:'profile_image' %></td>
-            <td><%= user.name %></td>
-            <td>follows: <%= user.followings.count %></td>
-            <td>followers: <%= user.followers.count %></td>
-            <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-          </tr>
-        <% end %>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image, class:'profile_image' %></td>
+              <td><%= user.name %></td>
+              <td>follows: <%= user.followings.count %></td>
+              <td>followers: <%= user.followers.count %></td>
+              <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+            </tr>
+          <% end %>
         </tbody>
-      <% else %>
-        <p>ユーザーはいません</p>
-      <% end %>
         </table>
+      <% else %>
+        <td>ユーザーはいません</td>
+      <% end %>
   </div>
 </div>
