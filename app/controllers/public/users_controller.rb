@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.page(params[:page]).per(8)
+    @users = User.page(params[:page]).per(10)
   end
 
   def show

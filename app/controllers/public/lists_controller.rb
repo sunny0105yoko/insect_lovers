@@ -6,11 +6,11 @@ class Public::ListsController < ApplicationController
       redirect_to lists_path
     end
   end
-    
+
   def new
     @list = List.new
   end
-  
+
   def create
     @list = List.new(list_params)
     @list.user_id = current_user.id
@@ -21,7 +21,7 @@ class Public::ListsController < ApplicationController
     render :_new
     end
   end
-  
+
   def index
     @lists = List.page(params[:page]).per(6)
   end
@@ -34,7 +34,7 @@ class Public::ListsController < ApplicationController
   def edit
     @list = List.find(params[:id])
   end
-  
+
   def update
     @list = List.find(params[:id])
     @list.update(list_params)
@@ -46,7 +46,7 @@ class Public::ListsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     list = List.find(params[:id])
     if list.destroy
@@ -59,11 +59,10 @@ private
   def list_params
     params.require(:list).permit(:name, :image, :introduction, :habitat, :latitude, :longitude)
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     @user.email == "guest@example.com"
-
   end
-  
+
 end

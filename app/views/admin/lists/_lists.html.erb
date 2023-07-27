@@ -1,35 +1,36 @@
 <div class= "container">
-<div class='row'>
-<h2>投稿一覧</h2>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <% lists.each do |list| %>
-  <div class="col">
-    <div class="card h-100">
-      <%= link_to admin_list_path(list.id) do %>
-        <%= image_tag list.get_image, class:"card-img-top", style: 'width: 100%; height: 300px; object-fit: cover;' %>
-      <% end %>
-      <div class="card-body">
-        <div class="row">
-            <div class="col-2">
-              <%= link_to admin_user_path(list.user.id) do %>
-              <%= image_tag list.user.get_profile_image, class:"profile_image my-3 rounded-circle"; %>
+  <div class='row'>
+    <h2>投稿一覧</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% lists.each do |list| %>
+          <div class="col">
+            <div class="card h-100">
+              <%= link_to admin_list_path(list.id) do %>
+               %= image_tag list.get_image, class:"card-img-top", style: 'width: 100%; height: 300px; object-fit: cover;' %>
               <% end %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2">
+                  <%= link_to admin_user_path(list.user.id) do %>
+                  <%= image_tag list.user.get_profile_image, class:"profile_image my-3 rounded-circle"; %>
+                  <% end %>
+                </div>
+              </div>
+            <h5 class="card-title">
+              <%= link_to(admin_list_path(list.id), class:"text-dark") do %>
+                <strong><i class="far fa-flag"></i><span><%= list.name %></span></strong>
+              <% end %>
+            </h5>
+              <p class="card-text">説明：<%= list.introduction %></p>
+              <p class="card-text">生息地：<%= list.habitat %></p>
+              <p class="card-text">更新日: <%= list.updated_at.strftime('%Y/%m/%d') %> </p>
+              <span><i class="fas fa-user"></i> By <%= link_to list.user.name, admin_user_path(list.user.id), class:"item-text" %> ｜ </span>
+              <span><%= link_to "#{list.post_comments.count}  コメント", admin_list_path(list.id), class:"text-dark" %></span>
+            </div>
             </div>
         </div>
-        <h5 class="card-title">
-        <%= link_to(admin_list_path(list.id), class:"text-dark") do %>
-                  <strong><i class="far fa-flag"></i><span><%= list.name %></span></strong>
-                <% end %></h5>
-        <p class="card-text">説明：<%= list.introduction %></p>
-        <p class="card-text">生息地：<%= list.habitat %></p>
-        <p class="card-text">更新日: <%= list.updated_at.strftime('%Y/%m/%d') %> </p>
-        <span><i class="fas fa-user"></i> By <%= link_to list.user.name, admin_user_path(list.user.id), class:"item-text" %> ｜ </span>
-        <span><%= link_to "#{list.post_comments.count}  コメント", admin_list_path(list.id), class:"text-dark" %></span>
+        <% end %>
       </div>
-    </div>
+    <%= paginate lists %>
   </div>
-  <% end %>
-</div>
-<%= paginate lists %>
- </div>
 </div>

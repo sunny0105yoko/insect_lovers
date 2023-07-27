@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
       <%= form_with(model:[list, post_comment], local: false) do |f| %>
+      <div class="errors">
+        <%= render "layouts/errors", obj: @post_comment %>
+      </div>
+        
         <%= f.text_area :comment, cols:'40', rows: "5",placeholder: "コメントをここに" %>
         <% if current_user.email!= "guest@example.com" %>
         <%= f.submit "送信", class: "btn btn-success" %>
