@@ -6,7 +6,14 @@
   </div>
   <div class="row">
     <div class="col-12 mt-5">
+            <!--画像認識-->
+      <p>画像解析：</p>
+      <% @list.tags.each do |f| %>
+      <%= f.name %>
+      <% end %></br>
       <%= image_tag @list.get_image, class:'list_image' %>
+
+      
       <p>投稿者：<%= @list.user.name %></p>
       <p>説明：<%= @list.introduction %></p>
       <p>生息地：<%= @list.habitat %></p>
@@ -15,9 +22,6 @@
       <% if @list.user == current_user %>
         <td><%= link_to '編集', edit_list_path(@list), class: "btn btn-sm btn-success edit_list_#{@list.id}" %></td>
         <td><%= link_to '削除', @list, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_list_#{@list.id}"%></td>
-      <% end %>
-      <% @list.tags.each do |f| %>
-        <%= f.name %>
       <% end %>
       <!--Googlemaps-->
       <h3>観察場所</h3>
