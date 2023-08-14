@@ -15,7 +15,7 @@ class Public::ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user_id = current_user.id
     tags = Vision.get_image_data(list_params[:image])
-    if@list.save
+    if @list.save
       flash[:notice] = "投稿が成功しました"
       tags.each do |tag|
         @list.tags.create(name: tag)
