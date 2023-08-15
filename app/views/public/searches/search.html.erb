@@ -2,42 +2,48 @@
   <div class="row">
     <h2>検索結果</h2>
 
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "User" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= link_to user_path(user.id) do %>
-          <%= user.name %>
-          <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがlistの時) -->
-    <tbody>
-      <div class='row-10 mt-3'>
-        <table class='table table-border table-sm'>
-          <tr classs= 'col-3'>
-            <th>タイトル</th>
-            <th>説明</th>
-            <th>生息地</th>
-        <th><br></th>
-      </tr>
-      <% @lists.each do |list| %>
-        <tr>
-          <td><%= link_to list_path(list.id) do %>
-          <%= list.name %>
-          <% end %>
-          </td>
-          <td><%= list.introduction %></td>
-          <td><%= list.habitat %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+  <table class="table table-hover table-inverse">
+    <!--検索対象モデルがUserの時 -->
+    <% if @range == "User" %>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user_path(user.id) do %>
+            <%= user.name %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがlistの時) -->
+      <tbody>
+        <div class='row-10 mt-3'>
+          <table class='table table-border table-sm'>
+            <tr classs= 'col-3'>
+              <th>タイトル</th>
+              <th>説明</th>
+              <th>生息地</th>
+              <th>画像解析</th>
+            </tr>
+        <% @lists.each do |list| %>
+          <tr>
+            <td><%= link_to list_path(list.id) do %>
+            <%= list.name %>
+            <% end %>
+            </td>
+            <td><%= list.introduction %></td>
+            <td><%= list.habitat %></td>
+      　　    <td><% list.tags.each do |tag| %>
+                <%= tag.name %>
+                <% end %>
+      　　    </td>
+          </tr>
+        <% end %>
+          </table>
+        </div>
+      </tbody>
+    <% end %>
+  </table>
   </div>
 </div>
