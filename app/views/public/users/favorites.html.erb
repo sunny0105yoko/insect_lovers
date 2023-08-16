@@ -2,5 +2,6 @@
   <div class='row'>
     <h4>お気に入り</h4>
       <%= render 'shares/lists/list', lists: @favorite_list%>
+      <%= link_to '戻る', user_path(@user.id) %>
   </div>
 </div>  

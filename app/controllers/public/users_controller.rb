@@ -15,6 +15,7 @@ class Public::UsersController < ApplicationController
   end
 
   def favorites
+    @user = User.find(params[:id])
     redirect_to root_path unless current_user.id
     favorites = Favorite.where(user_id: current_user.id).pluck(:list_id)
     @favorite_list = Kaminari.paginate_array(List.find(favorites)).page(params[:page]).per(6)
